@@ -1,0 +1,29 @@
+# Sensitive data - NEVER COMMIT!
+*.env
+*.env.local
+.env
+.env.local
+*_CREDENTIALS.txt
+service_role_key.txt
+
+# Node modules (if any)
+node_modules/
+.npm/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Build outputs
+dist/
+build/
+*.exe
+*.msi
