@@ -211,12 +211,7 @@
             <strong>Error:</strong> <span id="error-message"></span>
         </div>
 
-        <!-- Auth Form (if needed) -->
-        <div id="auth-form" class="auth-form hidden">
-            <h3>🔐 Enter API Key</h3>
-            <input type="password" id="api-key-input" placeholder="Your API Key" />
-            <button onclick="saveApiKey()">Save API Key</button>
-        </div>
+        <!-- No API key needed - direct GitHub download -->
 
         <!-- Main Content -->
         <div id="content" class="hidden">
@@ -252,34 +247,25 @@
     </div>
 
     <script>
-        const SUPABASE_URL = 'https://brobuwegghwjhxlptffk.supabase.co';
-        let apiKey = localStorage.getItem('evonyte_api_key');
-
-        async function checkHealth() {
-            try {
-                const response = await fetch(`${SUPABASE_URL}/functions/v1/health`);
-                return response.ok;
-            } catch {
-                return false;
-            }
-        }
+        // GitHub Releases integration
+        const GITHUB_REPO = 'fymruti/evonyte-distribution';
+        const LATEST_VERSION = '1.0.0';
+        const DOWNLOAD_URL = `https://github.com/${GITHUB_REPO}/releases/download/v${LATEST_VERSION}/evonyte-admin-v${LATEST_VERSION}-windows.zip`;
 
         async function loadLatestVersion() {
             try {
-                const response = await fetch(`${SUPABASE_URL}/functions/v1/latest`);
-
-                if (!response.ok) {
-                    throw new Error('Failed to fetch latest version');
-                }
-
-                const data = await response.json();
-
-                // Update UI
-                document.getElementById('version').textContent = `v${data.version}`;
-                document.getElementById('file-name').textContent = data.file_name;
-                document.getElementById('file-size').textContent = formatBytes(data.file_size);
-                document.getElementById('released-at').textContent = new Date(data.released_at).toLocaleDateString('pl-PL');
-                document.getElementById('changelog').textContent = data.changelog || 'No changelog available.';
+                // Show version info
+                document.getElementById('version').textContent = `v${LATEST_VERSION}`;
+                document.getElementById('file-name').textContent = `evonyte-admin-v${LATEST_VERSION}-windows.zip`;
+                document.getElementById('file-size').textContent = '10.5 MB';
+                document.getElementById('released-at').textContent = '24.12.2025';
+                document.getElementById('changelog').innerHTML = `
+                    <strong>First Release!</strong><br><br>
+                    ✅ Auto-connect to Brain PC (brainpc.local)<br>
+                    ✅ Auto-update mechanism<br>
+                    ✅ Real-time system monitoring<br>
+                    ✅ Professional UI
+                `;
 
                 // Show content
                 document.getElementById('loading').classList.add('hidden');
@@ -289,60 +275,9 @@
             }
         }
 
-        async function downloadLatest() {
-            if (!apiKey) {
-                document.getElementById('auth-form').classList.remove('hidden');
-                return;
-            }
-
-            const btn = document.getElementById('download-btn');
-            btn.disabled = true;
-            btn.textContent = '⏳ Preparing download...';
-
-            try {
-                const response = await fetch(`${SUPABASE_URL}/functions/v1/download`, {
-                    headers: {
-                        'Authorization': `Bearer ${apiKey}`
-                    }
-                });
-
-                if (response.status === 401 || response.status === 403) {
-                    localStorage.removeItem('evonyte_api_key');
-                    apiKey = null;
-                    alert('Invalid API key. Please enter a valid key.');
-                    document.getElementById('auth-form').classList.remove('hidden');
-                    return;
-                }
-
-                if (!response.ok) {
-                    throw new Error('Download failed');
-                }
-
-                const data = await response.json();
-
-                // Redirect to signed URL
-                window.location.href = data.download_url;
-
-                btn.textContent = '✅ Download started!';
-                setTimeout(() => {
-                    btn.disabled = false;
-                    btn.textContent = '⬇️ Download Latest Version';
-                }, 3000);
-            } catch (error) {
-                btn.disabled = false;
-                btn.textContent = '⬇️ Download Latest Version';
-                showError(error.message);
-            }
-        }
-
-        function saveApiKey() {
-            const key = document.getElementById('api-key-input').value.trim();
-            if (key) {
-                localStorage.setItem('evonyte_api_key', key);
-                apiKey = key;
-                document.getElementById('auth-form').classList.add('hidden');
-                alert('API key saved! You can now download.');
-            }
+        function downloadLatest() {
+            // Direct download from GitHub Releases
+            window.location.href = DOWNLOAD_URL;
         }
 
         function formatBytes(bytes) {
