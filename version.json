@@ -1,15 +1,14 @@
 {
-  "version": "1.0.23",
-  "build": 23,
+  "version": "1.0.24",
+  "build": 24,
   "releaseDate": "2025-12-30",
-  "downloadUrl": "https://raw.githubusercontent.com/Evonyte/evonyte-distribution/master/evonyte-admin-v1.0.23-windows.zip",
+  "downloadUrl": "https://raw.githubusercontent.com/Evonyte/evonyte-distribution/master/evonyte-admin-v1.0.24-windows.zip",
   "changelog": [
-    "✅ FIX: Auto-update checker now works correctly!",
-    "🔧 Update UI in Brain PC Dashboard - shows Current/Latest version",
-    "📡 Connects to Supabase /latest endpoint for version checks",
-    "🐛 Fixed version comparison logic (1.0.20 < 1.0.23)",
-    "✨ Brain PC: Sidebar navigation (System Monitor, Services, Docker)",
-    "🐳 Docker Control: Manage containers directly from Admin App"
+    "🎨 UI Refresh: Removed retro Win98 styling, full Material Design 3",
+    "🔓 Simplified: Removed authentication system, direct Brain PC access",
+    "⚡ Performance: Cleaner codebase, faster startup",
+    "✨ Professional: Modern, clean interface for Brain PC management",
+    "🧹 Code cleanup: Removed unused auth dependencies"
   ],
   "mandatory": false,
   "minVersion": "1.0.0"

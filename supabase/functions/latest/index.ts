@@ -57,7 +57,7 @@ serve(async (req: Request) => {
       file_size: latest.file_size,
       changelog: latest.changelog,
       released_at: latest.created_at,
-      download_url: `/download?version=${latest.version}`,
+      download_url: `https://raw.githubusercontent.com/Evonyte/evonyte-distribution/master/${latest.file_name}`,
     };
 
     return new Response(JSON.stringify(response), {
