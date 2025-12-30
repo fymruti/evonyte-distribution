@@ -1,15 +1,15 @@
 {
-  "version": "1.0.22",
-  "build": 22,
+  "version": "1.0.23",
+  "build": 23,
   "releaseDate": "2025-12-30",
-  "downloadUrl": "https://raw.githubusercontent.com/Evonyte/evonyte-distribution/master/evonyte-admin-v1.0.22-windows.zip",
+  "downloadUrl": "https://raw.githubusercontent.com/Evonyte/evonyte-distribution/master/evonyte-admin-v1.0.23-windows.zip",
   "changelog": [
-    "🔄 NEW: Auto-update checker - Check for updates button in Dashboard",
-    "✨ Brain PC: New sidebar navigation (System Monitor, Services Control, Docker Control)",
-    "🐳 Docker Control: Manage containers (start/stop/logs) directly from Admin App",
-    "⚙️ Services Control: Enhanced systemd service management",
-    "📊 System Monitor: Real-time hardware metrics dashboard",
-    "🔧 Connection status indicator in Brain PC sidebar"
+    "✅ FIX: Auto-update checker now works correctly!",
+    "🔧 Update UI in Brain PC Dashboard - shows Current/Latest version",
+    "📡 Connects to Supabase /latest endpoint for version checks",
+    "🐛 Fixed version comparison logic (1.0.20 < 1.0.23)",
+    "✨ Brain PC: Sidebar navigation (System Monitor, Services, Docker)",
+    "🐳 Docker Control: Manage containers directly from Admin App"
   ],
   "mandatory": false,
   "minVersion": "1.0.0"
