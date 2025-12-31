@@ -1,14 +1,13 @@
 {
-  "version": "1.0.27",
-  "build": 27,
+  "version": "1.0.28",
+  "build": 28,
   "releaseDate": "2025-12-31",
-  "downloadUrl": "https://github.com/Evonyte/evonyte-distribution/releases/download/v1.0.27/evonyte-admin-v1.0.27-windows.zip",
+  "downloadUrl": "https://github.com/Evonyte/evonyte-distribution/releases/download/v1.0.28/evonyte-admin-v1.0.28-windows.zip",
   "changelog": [
-    "Modular architecture with NavigationRail",
-    "Modern dark theme (AdminTheme)",
-    "New Settings screen with Brain PC config",
-    "Updated Dashboard and Quick Actions design",
-    "Auto-update button in Settings"
+    "Fixed: Auto-update button now works correctly",
+    "Fixed: Settings shows correct current version",
+    "Update dialog with changelog and download button",
+    "Improved: Version check from GitHub releases"
   ],
   "mandatory": false,
   "minVersion": "1.0.0"
