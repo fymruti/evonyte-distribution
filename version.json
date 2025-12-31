@@ -1,13 +1,13 @@
 {
-  "version": "1.0.25",
-  "build": 25,
+  "version": "1.0.26",
+  "build": 26,
   "releaseDate": "2025-12-31",
-  "downloadUrl": "https://github.com/Evonyte/evonyte-distribution/releases/download/v1.0.25/evonyte-admin-v1.0.25-windows.zip",
+  "downloadUrl": "https://github.com/Evonyte/evonyte-distribution/releases/download/v1.0.26/evonyte-admin-v1.0.26-windows.zip",
   "changelog": [
-    "Material Design 3 UI with Win98 compatibility layer",
-    "Brain PC monitoring widgets fixed",
-    "PDF export service stubbed for Windows build compatibility",
-    "Clean build system with proper dependency resolution"
+    "Material Design 3 UI (Win98 theme removed)",
+    "Simplified launch (no login required)",
+    "About dialog shows correct version",
+    "Clean codebase"
   ],
   "mandatory": false,
   "minVersion": "1.0.0"
