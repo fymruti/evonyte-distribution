@@ -545,59 +545,107 @@
 
         <!-- Download Section (hidden until authenticated) -->
         <div id="downloadSection">
-            <div class="app-info">
-                <div class="app-header">
-                    <div class="app-icon">💻</div>
-                    <div class="app-title">
-                        <h2>Evonyte Admin App</h2>
-                        <span class="version-badge">v1.0.27</span>
+            <!-- Loading state -->
+            <div id="versionLoading" style="text-align: center; padding: 40px;">
+                <div style="font-size: 2em; margin-bottom: 10px;">⏳</div>
+                <p style="color: #64748b;">Pobieranie informacji o wersji...</p>
+            </div>
+
+            <!-- Version info (loaded dynamically) -->
+            <div id="versionInfo" style="display: none;">
+                <div class="app-info">
+                    <div class="app-header">
+                        <div class="app-icon">💻</div>
+                        <div class="app-title">
+                            <h2>Evonyte Admin App</h2>
+                            <span class="version-badge" id="versionBadge">v?.?.?</span>
+                        </div>
+                    </div>
+
+                    <p class="app-description">
+                        Aplikacja administracyjna do zarządzania Brain PC - centrum obliczeniowym Evonyte.
+                        Monitoruj zasoby systemu w czasie rzeczywistym, zarządzaj usługami i kontroluj infrastrukturę.
+                    </p>
+
+                    <div class="features">
+                        <h3>📦 Funkcje</h3>
+                        <ul>
+                            <li>Auto-connect do Brain PC (brainpc.local:8080)</li>
+                            <li>Real-time monitoring (CPU, RAM, GPU, Disk)</li>
+                            <li>Auto-update mechanism (GitHub Releases)</li>
+                            <li>Professional Material Design 3 UI</li>
+                            <li>Dual-URL fallback (mDNS + IP)</li>
+                        </ul>
+                    </div>
+
+                    <div class="download-info">
+                        <span><strong>Platforma:</strong> Windows x64</span>
+                        <span><strong>Rozmiar:</strong> <span id="fileSize">? MB</span></span>
+                        <span><strong>Data wydania:</strong> <span id="releaseDate">?</span></span>
                     </div>
                 </div>
 
-                <p class="app-description">
-                    Aplikacja administracyjna do zarządzania Brain PC - centrum obliczeniowym Evonyte.
-                    Monitoruj zasoby systemu w czasie rzeczywistym, zarządzaj usługami i kontroluj infrastrukturę.
-                </p>
-
-                <div class="features">
-                    <h3>📦 Funkcje</h3>
-                    <ul>
-                        <li>Auto-connect do Brain PC (brainpc.local:8080)</li>
-                        <li>Real-time monitoring (CPU, RAM, GPU, Disk)</li>
-                        <li>Auto-update mechanism (GitHub Releases)</li>
-                        <li>Professional Material Design 3 UI</li>
-                        <li>Dual-URL fallback (mDNS + IP)</li>
-                    </ul>
+                <div class="changelog">
+                    <h3 id="changelogTitle">📝 Co nowego</h3>
+                    <div id="changelogContent" style="color: #64748b; line-height: 1.8; white-space: pre-line;"></div>
                 </div>
 
-                <div class="download-info">
-                    <span><strong>Platforma:</strong> Windows x64</span>
-                    <span><strong>Rozmiar:</strong> 11 MB</span>
-                    <span><strong>Data wydania:</strong> 31.12.2025</span>
-                </div>
+                <a id="downloadLink" href="#" class="btn btn-download" download>
+                    ⬇️ Pobierz Evonyte Admin App
+                </a>
+
+                <!-- Admin Upload Button -->
+                <button id="uploadBtn" onclick="showUploadModal()" class="btn" style="display: none; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); margin-top: 15px;">
+                    📤 Upload New Version
+                </button>
+
+                <button onclick="logout()" class="btn logout-btn">
+                    🚪 Wyloguj się
+                </button>
             </div>
+        </div>
 
-            <div class="changelog">
-                <h3>📝 Co nowego w v1.0.27</h3>
-                <ul>
-                    <li><strong>🏗️ Modular architecture:</strong> NavigationRail z 4 sekcjami</li>
-                    <li><strong>🎨 Modern dark theme:</strong> Nowy AdminTheme</li>
-                    <li><strong>⚙️ Settings screen:</strong> Konfiguracja Brain PC</li>
-                    <li><strong>🔄 Auto-update:</strong> Przycisk w Settings</li>
-                </ul>
+        <!-- Upload Modal -->
+        <div id="uploadModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); z-index: 1000; align-items: center; justify-content: center;">
+            <div style="background: white; border-radius: 20px; padding: 40px; max-width: 500px; width: 90%; max-height: 90vh; overflow-y: auto;">
+                <h2 style="margin-bottom: 20px;">📤 Upload New Version</h2>
+
+                <div id="uploadError" class="error-message" style="display: none;"></div>
+                <div id="uploadSuccess" class="success-message" style="display: none;"></div>
+
+                <form id="uploadForm" onsubmit="uploadVersion(event)">
+                    <div class="form-group">
+                        <label>ZIP File *</label>
+                        <input type="file" id="uploadFile" accept=".zip" required style="padding: 10px;">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Version (auto-detected from filename)</label>
+                        <input type="text" id="uploadVersion" placeholder="e.g. 1.0.28" readonly style="background: #f1f5f9;">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Changelog *</label>
+                        <textarea id="uploadChangelog" rows="4" placeholder="Co nowego w tej wersji..." required style="width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 8px;"></textarea>
+                    </div>
+
+                    <div id="uploadProgress" style="display: none; margin-bottom: 20px;">
+                        <div style="background: #e2e8f0; border-radius: 4px; height: 8px; overflow: hidden;">
+                            <div id="uploadProgressBar" style="background: linear-gradient(90deg, #667eea 0%, #764ba2 100%); height: 100%; width: 0%; transition: width 0.3s;"></div>
+                        </div>
+                        <p style="text-align: center; margin-top: 8px; color: #64748b; font-size: 0.9em;">Uploading...</p>
+                    </div>
+
+                    <div style="display: flex; gap: 10px;">
+                        <button type="submit" class="btn btn-primary" style="flex: 1;">
+                            Upload
+                        </button>
+                        <button type="button" onclick="hideUploadModal()" class="btn" style="flex: 1; background: #64748b;">
+                            Cancel
+                        </button>
+                    </div>
+                </form>
             </div>
-
-            <a
-                href="https://github.com/Evonyte/evonyte-distribution/releases/download/v1.0.27/evonyte-admin-v1.0.27-windows.zip"
-                class="btn btn-download"
-                download
-            >
-                ⬇️ Pobierz Evonyte Admin App v1.0.27
-            </a>
-
-            <button onclick="logout()" class="btn logout-btn">
-                🚪 Wyloguj się
-            </button>
         </div>
 
         <footer>
@@ -889,6 +937,167 @@
             }
         `;
         document.head.appendChild(style);
+
+        // ========================================
+        // VERSION LOADING (dynamic)
+        // ========================================
+        let latestVersionData = null;
+
+        async function loadVersionInfo() {
+            try {
+                const response = await fetch(`${SUPABASE_URL}/functions/v1/latest`);
+
+                if (!response.ok) {
+                    throw new Error('Failed to load version info');
+                }
+
+                latestVersionData = await response.json();
+
+                // Update UI
+                document.getElementById('versionBadge').textContent = `v${latestVersionData.version}`;
+                document.getElementById('fileSize').textContent = formatBytes(latestVersionData.file_size);
+                document.getElementById('releaseDate').textContent = new Date(latestVersionData.released_at).toLocaleDateString('pl-PL');
+                document.getElementById('changelogTitle').textContent = `📝 Co nowego w v${latestVersionData.version}`;
+                document.getElementById('changelogContent').textContent = latestVersionData.changelog || 'Brak informacji o zmianach.';
+                document.getElementById('downloadLink').href = latestVersionData.download_url;
+                document.getElementById('downloadLink').textContent = `⬇️ Pobierz Evonyte Admin App v${latestVersionData.version}`;
+
+                // Show version info, hide loading
+                document.getElementById('versionLoading').style.display = 'none';
+                document.getElementById('versionInfo').style.display = 'block';
+
+                // Show upload button for admin users
+                checkAdminAccess();
+
+            } catch (error) {
+                console.error('Error loading version:', error);
+                document.getElementById('versionLoading').innerHTML = `
+                    <div style="font-size: 2em; margin-bottom: 10px;">⚠️</div>
+                    <p style="color: #ef4444;">Nie udało się pobrać informacji o wersji.</p>
+                    <button onclick="loadVersionInfo()" class="btn" style="margin-top: 15px; background: #667eea;">Spróbuj ponownie</button>
+                `;
+            }
+        }
+
+        function formatBytes(bytes) {
+            if (!bytes || bytes === 0) return '? MB';
+            const mb = bytes / (1024 * 1024);
+            return mb.toFixed(1) + ' MB';
+        }
+
+        // ========================================
+        // ADMIN CHECK (show upload button)
+        // ========================================
+        const ADMIN_EMAILS = ['contact@evonyte.com', 'admin@evonyte.com', 'ruti@evonyte.com'];
+
+        function checkAdminAccess() {
+            if (currentUser && ADMIN_EMAILS.includes(currentUser.email)) {
+                document.getElementById('uploadBtn').style.display = 'block';
+            }
+        }
+
+        // ========================================
+        // UPLOAD MODAL
+        // ========================================
+        function showUploadModal() {
+            document.getElementById('uploadModal').style.display = 'flex';
+            document.getElementById('uploadError').style.display = 'none';
+            document.getElementById('uploadSuccess').style.display = 'none';
+        }
+
+        function hideUploadModal() {
+            document.getElementById('uploadModal').style.display = 'none';
+            document.getElementById('uploadForm').reset();
+            document.getElementById('uploadVersion').value = '';
+        }
+
+        // Auto-detect version from filename
+        document.getElementById('uploadFile').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                // Extract version from filename like "evonyte-admin-v1.0.28-windows.zip"
+                const match = file.name.match(/v?(\d+\.\d+\.\d+)/);
+                if (match) {
+                    document.getElementById('uploadVersion').value = match[1];
+                }
+            }
+        });
+
+        // ========================================
+        // UPLOAD VERSION
+        // ========================================
+        async function uploadVersion(event) {
+            event.preventDefault();
+
+            const file = document.getElementById('uploadFile').files[0];
+            const version = document.getElementById('uploadVersion').value;
+            const changelog = document.getElementById('uploadChangelog').value;
+
+            if (!file || !version || !changelog) {
+                document.getElementById('uploadError').textContent = 'Wypełnij wszystkie pola.';
+                document.getElementById('uploadError').style.display = 'block';
+                return;
+            }
+
+            document.getElementById('uploadProgress').style.display = 'block';
+            document.getElementById('uploadError').style.display = 'none';
+
+            try {
+                const formData = new FormData();
+                formData.append('file', file);
+                formData.append('version', version);
+                formData.append('changelog', changelog);
+                formData.append('set_latest', 'true');
+
+                // Get user token for auth
+                const { data: { session } } = await supabase.auth.getSession();
+                if (!session) {
+                    throw new Error('Not authenticated');
+                }
+
+                const response = await fetch(`${SUPABASE_URL}/functions/v1/upload`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${session.access_token}`
+                    },
+                    body: formData
+                });
+
+                document.getElementById('uploadProgressBar').style.width = '100%';
+
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(error.error || 'Upload failed');
+                }
+
+                const result = await response.json();
+
+                document.getElementById('uploadSuccess').textContent = `✅ Wersja ${result.version} została dodana!`;
+                document.getElementById('uploadSuccess').style.display = 'block';
+                document.getElementById('uploadProgress').style.display = 'none';
+
+                // Reload version info after 2 seconds
+                setTimeout(() => {
+                    hideUploadModal();
+                    loadVersionInfo();
+                }, 2000);
+
+            } catch (error) {
+                document.getElementById('uploadError').textContent = `❌ Błąd: ${error.message}`;
+                document.getElementById('uploadError').style.display = 'block';
+                document.getElementById('uploadProgress').style.display = 'none';
+                document.getElementById('uploadProgressBar').style.width = '0%';
+            }
+        }
+
+        // ========================================
+        // MODIFIED: Show download section + load version
+        // ========================================
+        function showDownloadSection() {
+            loginSection.classList.add('hidden');
+            downloadSection.classList.add('show');
+            loadVersionInfo();
+        }
 
         // ========================================
         // INITIALIZE ON PAGE LOAD
