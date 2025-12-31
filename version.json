@@ -1,13 +1,14 @@
 {
-  "version": "1.0.26",
-  "build": 26,
+  "version": "1.0.27",
+  "build": 27,
   "releaseDate": "2025-12-31",
-  "downloadUrl": "https://github.com/Evonyte/evonyte-distribution/releases/download/v1.0.26/evonyte-admin-v1.0.26-windows.zip",
+  "downloadUrl": "https://github.com/Evonyte/evonyte-distribution/releases/download/v1.0.27/evonyte-admin-v1.0.27-windows.zip",
   "changelog": [
-    "Material Design 3 UI (Win98 theme removed)",
-    "Simplified launch (no login required)",
-    "About dialog shows correct version",
-    "Clean codebase"
+    "Modular architecture with NavigationRail",
+    "Modern dark theme (AdminTheme)",
+    "New Settings screen with Brain PC config",
+    "Updated Dashboard and Quick Actions design",
+    "Auto-update button in Settings"
   ],
   "mandatory": false,
   "minVersion": "1.0.0"
