@@ -28,12 +28,12 @@ serve(async (req: Request) => {
 
   // === CURRENT VERSION - UPDATE HERE WHEN RELEASING ===
   const currentVersion = {
-    version: "1.0.52",
-    file_name: "evonyte-admin-v1.0.52-windows.zip",
-    file_size: 25000000,
-    changelog: "UI: Dual dropdown - wybor CO trenowac + JAK (intensywnosc)\nUI: Info badge z parametrami modelu\nUI: Auto-epoki dla intensywnosci (30/100/150)",
+    version: "1.0.53",
+    file_name: "evonyte-admin-v1.0.53-windows.zip",
+    file_size: 12165496,
+    changelog: "Fix: Authorization header for update check API",
     released_at: "2026-01-01",
-    download_url: "https://github.com/Evonyte/evonyte-distribution/releases/download/v1.0.52/evonyte-admin-v1.0.52-windows.zip",
+    download_url: "https://github.com/Evonyte/evonyte-distribution/releases/download/v1.0.53/evonyte-admin-v1.0.53-windows.zip",
   };
 
   return new Response(JSON.stringify(currentVersion), {

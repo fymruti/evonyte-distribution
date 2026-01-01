@@ -1,12 +1,10 @@
 {
-  "version": "1.0.52",
-  "build": 52,
+  "version": "1.0.53",
+  "build": 53,
   "releaseDate": "2026-01-01",
-  "downloadUrl": "https://github.com/Evonyte/evonyte-distribution/releases/download/v1.0.52/evonyte-admin-v1.0.52-windows.zip",
+  "downloadUrl": "https://github.com/Evonyte/evonyte-distribution/releases/download/v1.0.53/evonyte-admin-v1.0.53-windows.zip",
   "changelog": [
-    "UI: Dual dropdown - wybor CO trenowac + JAK (intensywnosc)",
-    "UI: Info badge z parametrami modelu",
-    "UI: Auto-epoki dla intensywnosci (30/100/150)"
+    "Fix: Authorization header for update check API"
   ],
   "mandatory": false,
   "minVersion": "1.0.0"
