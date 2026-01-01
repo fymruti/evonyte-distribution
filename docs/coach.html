@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evonyte Coach - Download</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #1565C0 0%, #0D47A1 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 700px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            padding: 50px 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo {
+            text-align: center;
+            font-size: 4em;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        /* Login Form Styles */
+        #loginSection {
+            display: block;
+        }
+
+        #loginSection.hidden {
+            display: none;
+        }
+
+        .login-form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            color: #334155;
+            margin-bottom: 8px;
+        }
+
+        input[type="password"],
+        input[type="email"] {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        input[type="password"]:focus,
+        input[type="email"]:focus {
+            outline: none;
+            border-color: #1565C0;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px 24px;
+            font-size: 1.1em;
+            font-weight: bold;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #1565C0 0%, #0D47A1 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(21, 101, 192, 0.4);
+        }
+
+        .btn-download {
+            background: linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%);
+            color: white;
+            margin-top: 20px;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+        }
+
+        .btn-download:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(46, 125, 50, 0.4);
+        }
+
+        .error-message {
+            background: #fee2e2;
+            color: #dc2626;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+            font-size: 0.95em;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .success-message {
+            background: #d1fae5;
+            color: #065f46;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+            font-size: 0.95em;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        /* Download Section Styles */
+        #downloadSection {
+            display: none;
+        }
+
+        #downloadSection.show {
+            display: block;
+        }
+
+        .app-info {
+            background: #f8fafc;
+            padding: 30px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+        }
+
+        .app-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .app-icon {
+            font-size: 3em;
+            margin-right: 20px;
+        }
+
+        .app-title h2 {
+            font-size: 1.8em;
+            color: #1e293b;
+            margin-bottom: 5px;
+        }
+
+        .version-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #1565C0 0%, #0D47A1 100%);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+        }
+
+        .app-description {
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .features {
+            margin-bottom: 20px;
+        }
+
+        .features h3 {
+            color: #334155;
+            margin-bottom: 12px;
+            font-size: 1.1em;
+        }
+
+        .features ul {
+            list-style: none;
+        }
+
+        .features li {
+            padding: 8px 0;
+            color: #64748b;
+            position: relative;
+            padding-left: 28px;
+        }
+
+        .features li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #2E7D32;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .download-info {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-top: 2px solid #e2e8f0;
+            color: #64748b;
+            font-size: 0.95em;
+        }
+
+        .changelog {
+            background: #fff;
+            border: 2px solid #e2e8f0;
+            padding: 25px;
+            border-radius: 16px;
+            margin-bottom: 20px;
+        }
+
+        .changelog h3 {
+            color: #1e293b;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .changelog-content {
+            color: #64748b;
+            line-height: 1.8;
+            white-space: pre-line;
+        }
+
+        .logout-btn {
+            background: transparent;
+            color: #64748b;
+            border: 2px solid #e2e8f0;
+            margin-top: 20px;
+        }
+
+        .logout-btn:hover {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+            transform: none;
+            box-shadow: none;
+        }
+
+        footer {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #e2e8f0;
+            text-align: center;
+            color: #94a3b8;
+            font-size: 0.9em;
+        }
+
+        /* Auth Tabs */
+        .auth-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 12px 20px;
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1em;
+            font-weight: 600;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .tab-btn:hover {
+            background: #f1f5f9;
+            border-color: #cbd5e1;
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, #1565C0 0%, #0D47A1 100%);
+            color: white;
+            border-color: #1565C0;
+        }
+
+        /* Google Button */
+        .btn-google {
+            background: white;
+            color: #3c4043;
+            border: 2px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            font-weight: 600;
+        }
+
+        .btn-google:hover {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Divider */
+        .divider {
+            text-align: center;
+            margin: 20px 0;
+            color: #94a3b8;
+            font-size: 0.9em;
+            position: relative;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 40%;
+            height: 1px;
+            background: #e2e8f0;
+        }
+
+        .divider::before {
+            left: 0;
+        }
+
+        .divider::after {
+            right: 0;
+        }
+
+        .forgot-password {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 0.9em;
+        }
+
+        .forgot-password a {
+            color: #1565C0;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+
+        .coming-soon {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+            display: inline-block;
+            margin-left: 10px;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .back-link a {
+            color: #1565C0;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+
+    <!-- Supabase JS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.3/dist/umd/supabase.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">🏋️</div>
+        <h1>Evonyte Coach</h1>
+        <p class="subtitle">Professional Dashboard for Fitness Trainers</p>
+
+        <!-- Login Section -->
+        <div id="loginSection">
+            <div class="login-form">
+                <div id="errorMessage" class="error-message">
+                    Nieprawidłowy email lub hasło. Spróbuj ponownie.
+                </div>
+
+                <div id="successMessage" class="success-message">
+                    Konto utworzone! Sprawdź email, aby potwierdzić rejestrację.
+                </div>
+
+                <!-- Auth Tabs -->
+                <div class="auth-tabs">
+                    <button class="tab-btn active" onclick="switchAuthTab('login')" id="loginTab">
+                        Zaloguj się
+                    </button>
+                    <button class="tab-btn" onclick="switchAuthTab('signup')" id="signupTab">
+                        Zarejestruj się
+                    </button>
+                </div>
+
+                <!-- Login Form -->
+                <form id="loginForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <input
+                            type="email"
+                            id="loginEmail"
+                            name="email"
+                            placeholder="twoj@email.com"
+                            autocomplete="email"
+                            required
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Hasło</label>
+                        <input
+                            type="password"
+                            id="loginPassword"
+                            name="password"
+                            placeholder="Wprowadź hasło..."
+                            autocomplete="current-password"
+                            required
+                        >
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        🔓 Zaloguj się
+                    </button>
+                    <div class="divider">lub</div>
+                    <button type="button" onclick="signInWithGoogle()" class="btn btn-google">
+                        <svg width="18" height="18" xmlns="http://www.w3.org/2000/svg"><g fill="#000" fill-rule="evenodd"><path d="M9 3.48c1.69 0 2.83.73 3.48 1.34l2.54-2.48C13.46.89 11.43 0 9 0 5.48 0 2.44 2.02.96 4.96l2.91 2.26C4.6 5.05 6.62 3.48 9 3.48z" fill="#EA4335"/><path d="M17.64 9.2c0-.74-.06-1.28-.19-1.84H9v3.34h4.96c-.1.83-.64 2.08-1.84 2.92l2.84 2.2c1.7-1.57 2.68-3.88 2.68-6.62z" fill="#4285F4"/><path d="M3.88 10.78A5.54 5.54 0 0 1 3.58 9c0-.62.11-1.22.29-1.78L.96 4.96A9.008 9.008 0 0 0 0 9c0 1.45.35 2.82.96 4.04l2.92-2.26z" fill="#FBBC05"/><path d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.84-2.2c-.76.53-1.78.9-3.12.9-2.38 0-4.4-1.57-5.12-3.74L.97 13.04C2.45 15.98 5.48 18 9 18z" fill="#34A853"/><path fill="none" d="M0 0h18v18H0z"/></g></svg>
+                        Kontynuuj z Google
+                    </button>
+                    <p class="forgot-password">
+                        <a href="#" onclick="showPasswordReset(); return false;">Zapomniałeś hasła?</a>
+                    </p>
+                </form>
+
+                <!-- Signup Form -->
+                <form id="signupForm" class="auth-form" style="display: none;">
+                    <div class="form-group">
+                        <label for="signupEmail">Email</label>
+                        <input
+                            type="email"
+                            id="signupEmail"
+                            name="email"
+                            placeholder="twoj@email.com"
+                            autocomplete="email"
+                            required
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="signupPassword">Hasło</label>
+                        <input
+                            type="password"
+                            id="signupPassword"
+                            name="password"
+                            placeholder="Minimum 8 znaków..."
+                            autocomplete="new-password"
+                            minlength="8"
+                            required
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Potwierdź hasło</label>
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                            name="confirmPassword"
+                            placeholder="Powtórz hasło..."
+                            autocomplete="new-password"
+                            minlength="8"
+                            required
+                        >
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        ✨ Utwórz konto
+                    </button>
+                    <div class="divider">lub</div>
+                    <button type="button" onclick="signInWithGoogle()" class="btn btn-google">
+                        <svg width="18" height="18" xmlns="http://www.w3.org/2000/svg"><g fill="#000" fill-rule="evenodd"><path d="M9 3.48c1.69 0 2.83.73 3.48 1.34l2.54-2.48C13.46.89 11.43 0 9 0 5.48 0 2.44 2.02.96 4.96l2.91 2.26C4.6 5.05 6.62 3.48 9 3.48z" fill="#EA4335"/><path d="M17.64 9.2c0-.74-.06-1.28-.19-1.84H9v3.34h4.96c-.1.83-.64 2.08-1.84 2.92l2.84 2.2c1.7-1.57 2.68-3.88 2.68-6.62z" fill="#4285F4"/><path d="M3.88 10.78A5.54 5.54 0 0 1 3.58 9c0-.62.11-1.22.29-1.78L.96 4.96A9.008 9.008 0 0 0 0 9c0 1.45.35 2.82.96 4.04l2.92-2.26z" fill="#FBBC05"/><path d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.84-2.2c-.76.53-1.78.9-3.12.9-2.38 0-4.4-1.57-5.12-3.74L.97 13.04C2.45 15.98 5.48 18 9 18z" fill="#34A853"/><path fill="none" d="M0 0h18v18H0z"/></g></svg>
+                        Kontynuuj z Google
+                    </button>
+                </form>
+
+                <!-- Password Reset Form -->
+                <form id="resetForm" class="auth-form" style="display: none;">
+                    <div class="form-group">
+                        <label for="resetEmail">Email</label>
+                        <input
+                            type="email"
+                            id="resetEmail"
+                            name="email"
+                            placeholder="twoj@email.com"
+                            autocomplete="email"
+                            required
+                        >
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        📧 Wyślij link resetujący
+                    </button>
+                    <p class="forgot-password">
+                        <a href="#" onclick="showLoginForm(); return false;">← Powrót do logowania</a>
+                    </p>
+                </form>
+
+                <div class="back-link">
+                    <a href="index.html">← Wróć do Admin App</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Download Section (hidden until authenticated) -->
+        <div id="downloadSection">
+            <div class="app-info">
+                <div class="app-header">
+                    <div class="app-icon">🏋️</div>
+                    <div class="app-title">
+                        <h2>Evonyte Coach <span class="coming-soon">COMING SOON</span></h2>
+                        <span class="version-badge">v0.1.0 (Preview)</span>
+                    </div>
+                </div>
+
+                <p class="app-description">
+                    Profesjonalna aplikacja dla trenerów fitness do zarządzania klientami,
+                    tworzenia planów treningowych i monitorowania postępów.
+                    Zintegrowana z ekosystemem Evonyte.
+                </p>
+
+                <div class="features">
+                    <h3>📦 Funkcje</h3>
+                    <ul>
+                        <li>Zarządzanie klientami (CRUD, profile, notatki)</li>
+                        <li>Tworzenie planów treningowych (drag & drop)</li>
+                        <li>Plany żywieniowe i śledzenie makros</li>
+                        <li>Monitoring postępów (wykresy, zdjęcia)</li>
+                        <li>Chat z klientami (real-time)</li>
+                        <li>Płatności i subskrypcje</li>
+                        <li>Analityka i raporty</li>
+                    </ul>
+                </div>
+
+                <div class="download-info">
+                    <span><strong>Platforma:</strong> Windows x64</span>
+                    <span><strong>Status:</strong> W przygotowaniu</span>
+                    <span><strong>ETA:</strong> Q1 2026</span>
+                </div>
+            </div>
+
+            <div class="changelog">
+                <h3>📝 Plan wydania</h3>
+                <div class="changelog-content">
+• Faza 1: Client Management (CRUD klientów)
+• Faza 2: Training Plans (kreator planów)
+• Faza 3: Nutrition Plans (plany żywieniowe)
+• Faza 4: Progress Tracking (wykresy, zdjęcia)
+• Faza 5: Chat & Notifications
+• Faza 6: Payments Integration
+                </div>
+            </div>
+
+            <button class="btn btn-download" disabled style="opacity: 0.6; cursor: not-allowed;">
+                ⏳ Pobieranie wkrótce dostępne
+            </button>
+
+            <button onclick="logout()" class="btn logout-btn">
+                🚪 Wyloguj się
+            </button>
+
+            <div class="back-link">
+                <a href="index.html">← Wróć do Admin App</a>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Evonyte. All rights reserved.</p>
+            <p style="margin-top: 8px; font-size: 0.85em;">
+                Masz pytania? Napisz na: <a href="mailto:contact@evonyte.com" style="color: #1565C0;">contact@evonyte.com</a>
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // ========================================
+        // SUPABASE CONFIGURATION
+        // ========================================
+        const SUPABASE_URL = 'https://brobuwegghwjhxlptffk.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJyb2J1d2VnZ2h3amh4bHB0ZmZrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM3OTgxODUsImV4cCI6MjA3OTM3NDE4NX0.am5qBoWlYlyR3-WByXv73llkUs2Ad4Cycgoxtu_SMLE';
+
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        let currentUser = null;
+
+        // ========================================
+        // DOM ELEMENTS
+        // ========================================
+        const loginSection = document.getElementById('loginSection');
+        const downloadSection = document.getElementById('downloadSection');
+        const loginForm = document.getElementById('loginForm');
+        const signupForm = document.getElementById('signupForm');
+        const resetForm = document.getElementById('resetForm');
+        const errorMessage = document.getElementById('errorMessage');
+        const successMessage = document.getElementById('successMessage');
+        const loginTab = document.getElementById('loginTab');
+        const signupTab = document.getElementById('signupTab');
+
+        // ========================================
+        // TAB SWITCHING
+        // ========================================
+        function switchAuthTab(tab) {
+            if (tab === 'login') {
+                loginForm.style.display = 'block';
+                signupForm.style.display = 'none';
+                resetForm.style.display = 'none';
+                loginTab.classList.add('active');
+                signupTab.classList.remove('active');
+                hideMessages();
+            } else if (tab === 'signup') {
+                loginForm.style.display = 'none';
+                signupForm.style.display = 'block';
+                resetForm.style.display = 'none';
+                loginTab.classList.remove('active');
+                signupTab.classList.add('active');
+                hideMessages();
+            }
+        }
+
+        function showPasswordReset() {
+            loginForm.style.display = 'none';
+            signupForm.style.display = 'none';
+            resetForm.style.display = 'block';
+            hideMessages();
+        }
+
+        function showLoginForm() {
+            switchAuthTab('login');
+        }
+
+        // ========================================
+        // MESSAGE HELPERS
+        // ========================================
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.classList.add('show');
+            successMessage.classList.remove('show');
+        }
+
+        function showSuccess(message) {
+            successMessage.textContent = message;
+            successMessage.classList.add('show');
+            errorMessage.classList.remove('show');
+        }
+
+        function hideMessages() {
+            errorMessage.classList.remove('show');
+            successMessage.classList.remove('show');
+        }
+
+        // ========================================
+        // DISPLAY HELPERS
+        // ========================================
+        function showDownloadSection() {
+            loginSection.classList.add('hidden');
+            downloadSection.classList.add('show');
+        }
+
+        function showAuthSection() {
+            loginSection.classList.remove('hidden');
+            downloadSection.classList.remove('show');
+        }
+
+        // ========================================
+        // EMAIL LOGIN
+        // ========================================
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            hideMessages();
+
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+
+            try {
+                const { data, error } = await supabase.auth.signInWithPassword({
+                    email,
+                    password
+                });
+
+                if (error) {
+                    showError(error.message);
+                    shakeForm(loginForm);
+                } else {
+                    currentUser = data.user;
+                    showDownloadSection();
+                    loginForm.reset();
+                }
+            } catch (err) {
+                showError('Wystąpił błąd podczas logowania.');
+                console.error(err);
+            }
+        });
+
+        // ========================================
+        // EMAIL SIGNUP
+        // ========================================
+        signupForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            hideMessages();
+
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (password !== confirmPassword) {
+                showError('Hasła nie są identyczne.');
+                shakeForm(signupForm);
+                return;
+            }
+
+            if (password.length < 8) {
+                showError('Hasło musi mieć minimum 8 znaków.');
+                shakeForm(signupForm);
+                return;
+            }
+
+            try {
+                const { data, error } = await supabase.auth.signUp({
+                    email,
+                    password
+                });
+
+                if (error) {
+                    showError(error.message);
+                    shakeForm(signupForm);
+                } else {
+                    signupForm.reset();
+                    showSuccess('Konto utworzone! Sprawdź email, aby potwierdzić rejestrację.');
+                }
+            } catch (err) {
+                showError('Wystąpił błąd podczas rejestracji.');
+                console.error(err);
+            }
+        });
+
+        // ========================================
+        // GOOGLE SIGN-IN
+        // ========================================
+        async function signInWithGoogle() {
+            hideMessages();
+            try {
+                const { data, error } = await supabase.auth.signInWithOAuth({
+                    provider: 'google',
+                    options: {
+                        redirectTo: 'https://evonyte.com/coach.html'
+                    }
+                });
+
+                if (error) {
+                    showError('Nie udało się zalogować przez Google.');
+                    console.error(error);
+                }
+            } catch (err) {
+                showError('Wystąpił błąd podczas logowania przez Google.');
+                console.error(err);
+            }
+        }
+
+        // ========================================
+        // PASSWORD RESET
+        // ========================================
+        resetForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            hideMessages();
+
+            const email = document.getElementById('resetEmail').value;
+
+            try {
+                const { error } = await supabase.auth.resetPasswordForEmail(email, {
+                    redirectTo: 'https://evonyte.com/coach.html'
+                });
+
+                if (error) {
+                    showError(error.message);
+                    shakeForm(resetForm);
+                } else {
+                    resetForm.reset();
+                    showSuccess('Link resetujący hasło został wysłany na Twój email.');
+                }
+            } catch (err) {
+                showError('Wystąpił błąd podczas resetowania hasła.');
+                console.error(err);
+            }
+        });
+
+        // ========================================
+        // LOGOUT
+        // ========================================
+        async function logout() {
+            try {
+                await supabase.auth.signOut();
+                currentUser = null;
+                showAuthSection();
+                switchAuthTab('login');
+            } catch (err) {
+                console.error('Logout error:', err);
+            }
+        }
+
+        // ========================================
+        // SESSION CHECK
+        // ========================================
+        async function checkSession() {
+            try {
+                const { data: { session } } = await supabase.auth.getSession();
+
+                if (session) {
+                    currentUser = session.user;
+                    showDownloadSection();
+                } else {
+                    showAuthSection();
+                }
+            } catch (err) {
+                console.error('Session check error:', err);
+                showAuthSection();
+            }
+        }
+
+        // ========================================
+        // AUTH STATE LISTENER
+        // ========================================
+        supabase.auth.onAuthStateChange((event, session) => {
+            console.log('Auth event:', event);
+
+            if (event === 'SIGNED_IN' && session) {
+                currentUser = session.user;
+                showDownloadSection();
+            } else if (event === 'SIGNED_OUT') {
+                currentUser = null;
+                showAuthSection();
+            }
+        });
+
+        // ========================================
+        // SHAKE ANIMATION
+        // ========================================
+        function shakeForm(form) {
+            form.style.animation = 'shake 0.5s';
+            setTimeout(() => {
+                form.style.animation = '';
+            }, 500);
+        }
+
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+                20%, 40%, 60%, 80% { transform: translateX(10px); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // ========================================
+        // INITIALIZE
+        // ========================================
+        window.addEventListener('DOMContentLoaded', checkSession);
+    </script>
+</body>
+</html>
