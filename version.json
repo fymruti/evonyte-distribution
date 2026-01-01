@@ -1,11 +1,11 @@
 {
-  "version": "1.0.44",
-  "build": 44,
+  "version": "1.0.45",
+  "build": 45,
   "releaseDate": "2026-01-01",
-  "downloadUrl": "https://github.com/Evonyte/evonyte-distribution/releases/download/v1.0.44/evonyte-admin-v1.0.44-windows.zip",
+  "downloadUrl": "https://github.com/Evonyte/evonyte-distribution/releases/download/v1.0.45/evonyte-admin-v1.0.45-windows.zip",
   "changelog": [
-    "Mini-Vision: ConvNeXt-Base model (89M parameters)",
-    "Training: Progress bar with Loss, Accuracy, Time, ETA"
+    "Fix: Auto-update now works without Updater.exe",
+    "Mini-Vision: ConvNeXt-Base model (89M parameters)"
   ],
   "mandatory": false,
   "minVersion": "1.0.0"
