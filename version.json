@@ -1,11 +1,11 @@
 {
-  "version": "1.0.39",
-  "build": 39,
-  "releaseDate": "2025-12-31",
-  "downloadUrl": "https://github.com/Evonyte/evonyte-distribution/releases/download/v1.0.39/evonyte-admin-v1.0.39-windows.zip",
+  "version": "1.0.44",
+  "build": 44,
+  "releaseDate": "2026-01-01",
+  "downloadUrl": "https://github.com/Evonyte/evonyte-distribution/releases/download/v1.0.44/evonyte-admin-v1.0.44-windows.zip",
   "changelog": [
-    "UI: Bigger titles on metric tiles (CPU, GPU, Memory)",
-    "Title font 11px -> 18px, icon 20px -> 24px"
+    "Mini-Vision: ConvNeXt-Base model (89M parameters)",
+    "Training: Progress bar with Loss, Accuracy, Time, ETA"
   ],
   "mandatory": false,
   "minVersion": "1.0.0"
