@@ -945,7 +945,11 @@
 
         async function loadVersionInfo() {
             try {
-                const response = await fetch(`${SUPABASE_URL}/functions/v1/latest`);
+                const response = await fetch(`${SUPABASE_URL}/functions/v1/latest`, {
+                    headers: {
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                    }
+                });
 
                 if (!response.ok) {
                     throw new Error('Failed to load version info');
