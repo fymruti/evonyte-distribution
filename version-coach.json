@@ -1,14 +1,14 @@
 {
-  "version": "1.0.1",
-  "build": 2,
+  "version": "1.0.2",
+  "build": 3,
   "releaseDate": "2026-01-02",
-  "downloadUrl": "https://github.com/Evonyte/evonyte-distribution/releases/download/coach-v1.0.1/evonyte-coach-v1.0.1-windows.zip",
+  "downloadUrl": "https://github.com/Evonyte/evonyte-distribution/releases/download/coach-v1.0.2/evonyte-coach-v1.0.2-windows.zip",
   "changelog": [
-    "High contrast glass cards with visible borders",
-    "Neon glow effects on icons and numbers",
-    "Bigger typography - 44px stat numbers, 32px icons",
-    "Distinct colors: cyan, green, orange, purple",
-    "Hover animations with color glow"
+    "Polski jako glowny jezyk interfejsu",
+    "Czytelniejszy top bar - biale teksty",
+    "Oddzielny plik jezykowy (app_strings.dart)",
+    "jsDelivr CDN dla szybszych aktualizacji",
+    "Cache-busting dla wersji"
   ],
   "mandatory": false,
   "minVersion": "0.1.0"
