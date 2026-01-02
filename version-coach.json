@@ -1,0 +1,13 @@
+{
+  "version": "0.1.1",
+  "build": 2,
+  "releaseDate": "2026-01-02",
+  "downloadUrl": "https://github.com/Evonyte/evonyte-distribution/releases/download/coach-v0.1.1/evonyte-coach-v0.1.1-windows.zip",
+  "changelog": [
+    "Auto-update system added",
+    "Update banner with progress bar",
+    "One-click update and restart"
+  ],
+  "mandatory": false,
+  "minVersion": "0.1.0"
+}
