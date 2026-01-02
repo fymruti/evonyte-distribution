@@ -1,14 +1,12 @@
 {
-  "version": "1.0.2",
-  "build": 3,
+  "version": "1.0.3",
+  "build": 4,
   "releaseDate": "2026-01-02",
-  "downloadUrl": "https://github.com/Evonyte/evonyte-distribution/releases/download/coach-v1.0.2/evonyte-coach-v1.0.2-windows.zip",
+  "downloadUrl": "https://github.com/Evonyte/evonyte-distribution/releases/download/coach-v1.0.3/evonyte-coach-v1.0.3-windows.zip",
   "changelog": [
-    "Polski jako glowny jezyk interfejsu",
-    "Czytelniejszy top bar - biale teksty",
-    "Oddzielny plik jezykowy (app_strings.dart)",
-    "jsDelivr CDN dla szybszych aktualizacji",
-    "Cache-busting dla wersji"
+    "Biale przyciski nawigacji - pelna widocznosc",
+    "Ikony i tekst 100% biale (bylo 50% szare)",
+    "Lepszy kontrast na ciemnym tle"
   ],
   "mandatory": false,
   "minVersion": "0.1.0"
