@@ -1,12 +1,13 @@
 {
-  "version": "0.1.2",
-  "build": 3,
+  "version": "1.0.0",
+  "build": 1,
   "releaseDate": "2026-01-02",
-  "downloadUrl": "https://github.com/Evonyte/evonyte-distribution/releases/download/coach-v0.1.2/evonyte-coach-v0.1.2-windows.zip",
+  "downloadUrl": "https://github.com/Evonyte/evonyte-distribution/releases/download/coach-v1.0.0/evonyte-coach-v1.0.0-windows.zip",
   "changelog": [
-    "Update button always visible in sidebar",
-    "Version number shown at bottom",
-    "Click to check for updates or install"
+    "New Crypto Dashboard UI with dark glassmorphism theme",
+    "Horizontal navigation bar at top",
+    "6 color presets: blue, purple, green, cyan, orange, red",
+    "Neon glow effects and animations"
   ],
   "mandatory": false,
   "minVersion": "0.1.0"
