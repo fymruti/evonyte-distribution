@@ -1,13 +1,15 @@
 {
-  "version": "1.0.4",
-  "build": 5,
+  "version": "1.0.5",
+  "build": 6,
   "releaseDate": "2026-01-03",
-  "downloadUrl": "https://github.com/Evonyte/evonyte-distribution/releases/download/coach-v1.0.4/evonyte-coach-v1.0.4-windows.zip",
+  "downloadUrl": "https://github.com/Evonyte/evonyte-distribution/releases/download/coach-v1.0.5/evonyte-coach-v1.0.5-windows.zip",
   "changelog": [
-    "Prawdziwa baza danych SQLite (Drift)",
-    "CRUD klientow - dodawanie, usuwanie",
-    "Dane zapisuja sie po zamknieciu aplikacji",
-    "Polski interfejs"
+    "Profil klienta z podgladem ankiety",
+    "System zaproszen (6-cyfrowy kod)",
+    "Kreator planow treningowych z drag & drop",
+    "Biblioteka 60+ cwiczen w 8 kategoriach",
+    "Edytor ankiety (dodawanie/usuwanie pytan)",
+    "Synchronizacja z Supabase (gotowa infrastruktura)"
   ],
   "mandatory": false,
   "minVersion": "0.1.0"
