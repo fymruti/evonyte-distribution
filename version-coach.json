@@ -1,14 +1,16 @@
 {
-  "version": "1.0.6",
-  "build": 7,
+  "version": "1.0.7",
+  "build": 8,
   "releaseDate": "2026-01-03",
-  "downloadUrl": "https://github.com/Evonyte/evonyte-distribution/releases/download/coach-v1.0.6/evonyte-coach-v1.0.6-windows.zip",
+  "downloadUrl": "https://github.com/Evonyte/evonyte-distribution/releases/download/coach-v1.0.7/evonyte-coach-v1.0.7-windows.zip",
   "changelog": [
-    "Fix auto-update - zmiana CDN na raw GitHub",
-    "Profil klienta z podgladem ankiety",
-    "System zaproszen (6-cyfrowy kod)",
-    "Kreator planow treningowych z drag & drop",
-    "Biblioteka 60+ cwiczen w 8 kategoriach"
+    "🗓️ SYSTEM REZERWACJI - pełna funkcjonalność kalendarza",
+    "📅 Kalendarz tygodniowy z zarządzaniem dostępnością",
+    "🏋️ Zarządzanie siłowniami (wiele lokalizacji)",
+    "⏰ Grafik pracy (dni robocze, godziny dostępności)",
+    "🎯 Typy slotów (różne długości treningów: 45/60/90 min)",
+    "✅ Akceptacja/odrzucanie rezerwacji od klientów",
+    "🚫 Blokady czasowe (urlopy, niedostępność)"
   ],
   "mandatory": false,
   "minVersion": "0.1.0"
