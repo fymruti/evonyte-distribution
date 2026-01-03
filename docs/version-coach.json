@@ -1,13 +1,13 @@
 {
-  "version": "1.0.18",
-  "build": 19,
+  "version": "1.0.19",
+  "build": 20,
   "releaseDate": "2026-01-03",
-  "downloadUrl": "https://github.com/Evonyte/evonyte-distribution/releases/download/coach-v1.0.18/evonyte-coach-v1.0.18-windows.zip",
+  "downloadUrl": "https://github.com/Evonyte/evonyte-distribution/releases/download/coach-v1.0.19/evonyte-coach-v1.0.19-windows.zip",
   "changelog": [
-    "🔧 SIDEBAR SCROLL FIX - zawsze przewija się prawidłowo",
-    "✅ DOLNA SEKCJA WIDOCZNA - nie jest już obcięta",
-    "🖱️ EDYCJA TYPÓW TRENINGÓW - kliknięcie działa bez problemów",
-    "📏 BOTTOM PADDING - ostatnia sekcja w pełni widoczna"
+    "✅ UX FIX - komunikat 'Już masz najnowszą wersję!' przy kliknięciu update",
+    "📊 DEBUG LOGI - widoczne w konsoli (Already up to date / Update available)",
+    "🔔 SNACKBAR - zielony komunikat przez 2 sekundy",
+    "🔧 SIDEBAR SCROLL - zawsze przewija się prawidłowo (v1.0.18)"
   ],
   "mandatory": false,
   "minVersion": "0.1.0"
