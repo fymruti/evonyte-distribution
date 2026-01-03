@@ -1,15 +1,14 @@
 {
-  "version": "1.0.14",
-  "build": 15,
+  "version": "1.0.15",
+  "build": 16,
   "releaseDate": "2026-01-03",
-  "downloadUrl": "https://github.com/Evonyte/evonyte-distribution/releases/download/coach-v1.0.14/evonyte-coach-v1.0.14-windows.zip",
+  "downloadUrl": "https://github.com/Evonyte/evonyte-distribution/releases/download/coach-v1.0.15/evonyte-coach-v1.0.15-windows.zip",
   "changelog": [
-    "📐 RESPONSYWNY KALENDARZ - dostosowuje się do wielkości okna",
-    "📜 SIDEBAR SCROLL - mieści się w fullscreen, przewijanie",
-    "✏️ EDYCJA GODZIN - kliknij godziny → edytuj (dialog z TimePicker)",
-    "🏋️ DROPDOWN SIŁOWNI - wybierz siłownię dla każdego dnia pracy",
-    "⏱️ POKAZUJE CZAS TRENINGU - długość + przerwa (60min + 15min)",
-    "🖱️ INLINE EDYCJA - kliknij typ treningu → edytuj parametry"
+    "📐 KALENDARZ 5% MNIEJSZY - lepsze wykorzystanie przestrzeni",
+    "📜 SIDEBAR BEZ SCROLLA - dopasowuje się do fullscreen",
+    "❌ USUNIĘTO 'Wszys.' - każdy dzień ma konkretną siłownię",
+    "⏱️ WIĘKSZE POLA GODZIN - lepsze UX",
+    "✏️ EDYCJA DŁUGOŚCI/PRZERWY - pełna kontrola typów treningów (przyciski +/-)"
   ],
   "mandatory": false,
   "minVersion": "0.1.0"
