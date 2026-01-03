@@ -1,12 +1,13 @@
 {
-  "version": "1.0.3",
-  "build": 4,
-  "releaseDate": "2026-01-02",
-  "downloadUrl": "https://github.com/Evonyte/evonyte-distribution/releases/download/coach-v1.0.3/evonyte-coach-v1.0.3-windows.zip",
+  "version": "1.0.4",
+  "build": 5,
+  "releaseDate": "2026-01-03",
+  "downloadUrl": "https://github.com/Evonyte/evonyte-distribution/releases/download/coach-v1.0.4/evonyte-coach-v1.0.4-windows.zip",
   "changelog": [
-    "Biale przyciski nawigacji - pelna widocznosc",
-    "Ikony i tekst 100% biale (bylo 50% szare)",
-    "Lepszy kontrast na ciemnym tle"
+    "Prawdziwa baza danych SQLite (Drift)",
+    "CRUD klientow - dodawanie, usuwanie",
+    "Dane zapisuja sie po zamknieciu aplikacji",
+    "Polski interfejs"
   ],
   "mandatory": false,
   "minVersion": "0.1.0"
