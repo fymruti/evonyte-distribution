@@ -1,13 +1,13 @@
 {
-  "version": "1.0.11",
-  "build": 12,
+  "version": "1.0.12",
+  "build": 13,
   "releaseDate": "2026-01-03",
-  "downloadUrl": "https://github.com/Evonyte/evonyte-distribution/releases/download/coach-v1.0.11/evonyte-coach-v1.0.11-windows.zip",
+  "downloadUrl": "https://github.com/Evonyte/evonyte-distribution/releases/download/coach-v1.0.12/evonyte-coach-v1.0.12-windows.zip",
   "changelog": [
-    "✅ NAPRAWIONO KALENDARZ - teraz dziala 100%",
-    "🔧 FIX DateFormat crash (locale pl_PL)",
-    "📅 Kalendarz renderuje poprawnie",
-    "🎯 Wszystkie zakładki widoczne i działające"
+    "📅 Mini kalendarz miesięczny - szybka nawigacja po datach",
+    "🗓️ Nawigacja między miesiącami (← Styczeń 2026 →)",
+    "🚫 Blokowanie czasu - kliknij slot → Zablokuj (urlop, lekarz, prywatne)",
+    "🔒 Privacy - klient NIE widzi powodu blokady"
   ],
   "mandatory": false,
   "minVersion": "0.1.0"
